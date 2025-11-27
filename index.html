@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZR3JJLMT7G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZR3JJLMT7G', {
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAVI - Dein DeepUp-Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        /* ===== DAVI BOT - BAUARBEITER-FREUNDLICH ===== */
+        /* Exakte DAVI-Logo Farben: Türkis #1DD1A1, Dunkelgrau #2C3E50 */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2C3E50;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER MIT DAVI LOGO ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(45, 62, 80, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            flex-shrink: 0;
+        }
+
+        .davi-logo {
+            height: 80px;
+            width: auto;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            color: #2C3E50;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header-text p {
+            font-size: 1.2rem;
+            color: #1DD1A1;
+            font-weight: 500;
+        }
+
+        /* ===== SUCHBEREICH ===== */
+        .search-section {
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 50px 18px 50px;
+            font-size: 1.1rem;
+            background: white;
+            border: 3px solid #1DD1A1;
+            border-radius: 25px;
+            color: #2C3E50;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(29, 209, 161, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-input::placeholder {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .search-input:focus {
+            border-color: #17a2b8;
+            box-shadow: 0 8px 25px rgba(29, 209, 161, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1DD1A1;
+            font-size: 1.3rem;
+        }
+
+        .clear-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: #e9ecef;
+            color: #1DD1A1;
+        }
+
+        /* ===== HAUPTBEREICH ===== */
+        .main-content {
+            flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== PROBLEM GRID ===== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problem-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .problem-card {
+            background: white;
+            border: 3px solid transparent;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 62, 80, 0.1);
+            color: #2C3E50;
+            text-decoration: none;
+            display: block;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: #1DD1A1;
+            box-shadow: 0 15px 35px rgba(29, 209, 161, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
+        }
+
+        .problem-card.active {
+            border-color: #1DD1A1;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .problem-details {
+            display: none;
+            background: white;
+            border: 3px solid #1DD1A1;
+            border-top: none;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(29, 209, 161, 0.2);
+            animation: slideDown 0.3s ease-in-out;
+        }
+
+        .problem-details.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .problem-icon {
+            margin-bottom: 20px;
+        }
+
+        .problem-icon i {
+            font-size: 3rem;
+            color: #1DD1A1;
+        }
+
+        .problem-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #2C3E50;
+            font-weight: 600;
+        }
+
+        .problem-card p {
+            color: #6c757d;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .problem-description {
+            font-size: 1.1rem;
+            color: #2C3E50;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #1DD1A1;
+            margin-bottom: 30px;
+        }
+
+        .confirm-question {
+            background: linear-gradient(135deg, #1DD1A1 0%, #17a085 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .confirm-question h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .yes-btn, .no-btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .yes-btn {
+            background: white;
+            color: #1DD1A1;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .yes-btn:hover {
+            background: #f8fff9;
+            transform: translateY(-2px);
+        }
+
+        .no-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .no-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ===== LÖSUNGEN ===== */
+        .solution-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #1DD1A1 0%, #17a085 100%);
+            color: white;
+            border-radius: 20px;
+        }
+
+        .solution-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .solution-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .solution-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(45, 62, 80, 0.1);
+            border-left: 6px solid #1DD1A1;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(29, 209, 161, 0.2);
+        }
+
+        .solution-card h3 {
+            color: #1DD1A1;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .solution-card h3 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .solution-card p {
+            color: #2C3E50;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* ===== ZURÜCK BUTTON ===== */
+        .back-btn {
+            background: #1DD1A1;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(29, 209, 161, 0.3);
+        }
+
+        .back-btn:hover {
+            background: #17a085;
+            transform: translateX(-3px);
+            box-shadow: 0 6px 20px rgba(29, 209, 161, 0.4);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* ===== RÜCKRUF FORMULAR ===== */
+        .callback-form {
+            background: white;
+            border: 3px solid #1DD1A1;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 4px 20px rgba(29, 209, 161, 0.15);
+            display: none;
+        }
+
+        .callback-form.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .callback-form h4 {
+            color: #1DD1A1;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #2C3E50;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #2C3E50;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1DD1A1;
+            background: white;
+            box-shadow: 0 4px 15px rgba(29, 209, 161, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Radio Button Styling - Cross-Browser Compatible */
+        input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        input[type="radio"]:checked {
+            border-color: #1DD1A1;
+            background: white;
+        }
+        
+        input[type="radio"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #1DD1A1;
+        }
+        
+        input[type="radio"]:checked + span {
+            font-weight: bold;
+            color: #1DD1A1;
+        }
+        
+        /* For browsers that support :has() */
+        label:has(input[type="radio"]:checked) {
+            border-color: #1DD1A1 !important;
+            background-color: rgba(29, 209, 161, 0.05) !important;
+        }
+        
+        label:has(input[type="radio"]):hover {
+            border-color: #1DD1A1 !important;
+            background-color: rgba(29, 209, 161, 0.02) !important;
+        }
+        
+        /* Mobile touch feedback */
+        label:active {
+            transform: scale(0.98);
+        }
+        
+        /* Saturday Radio Button Labels */
+        .saturday-radio-label {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            padding: 14px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            background: white;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+        }
+        
+        .saturday-radio-label:hover {
+            border-color: #1DD1A1 !important;
+            background-color: rgba(29, 209, 161, 0.02) !important;
+        }
+        
+        .saturday-radio-label input[type="radio"] {
+            margin-top: 2px;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            min-width: 20px;
+        }
+        
+        .saturday-radio-text {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.4;
+            color: #2C3E50;
+            word-break: break-word;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 480px) {
+            .saturday-radio-label {
+                padding: 12px;
+                gap: 10px;
+            }
+            
+            .saturday-radio-text {
+                font-size: 14px;
+            }
+        }
+        
+        /* Legal Modal */
+        .legal-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .legal-modal.active {
+            display: flex;
+        }
+        
+        .legal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .legal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e9ecef;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .legal-close:hover {
+            background: #dc3545;
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .legal-content h2 {
+            color: #1DD1A1;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .legal-content h3 {
+            color: #2C3E50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .legal-content p {
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .legal-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .legal-content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .legal-content a {
+            color: #1DD1A1;
+            text-decoration: underline;
+        }
+        
+        /* Footer Links */
+        .footer-links {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #1DD1A1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1DD1A1 0%, #17a085 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(29, 209, 161, 0.3);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 209, 161, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .callback-btn {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495e 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-left: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .callback-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
+        }
+
+        /* ===== DANKE SCREEN ===== */
+        .thank-you-screen {
+            text-align: center;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(45, 62, 80, 0.1);
+            border-left: 6px solid #1DD1A1;
+        }
+
+        .thank-you-screen h2 {
+            color: #1DD1A1;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .thank-you-screen p {
+            color: #2C3E50;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .thank-you-screen .back-btn {
+            background: #1DD1A1;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 40px;
+            padding: 25px;
+            background: #2C3E50;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .footer p:last-child {
+            margin-bottom: 0;
+            opacity: 0.8;
+        }
+
+        /* ===== SPRACHAUSWAHL ===== */
+        .language-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 200px);
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .language-flags {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .flag-button {
+            background: white;
+            border: 3px solid transparent;
+            border-radius: 25px;
+            padding: 45px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(45, 62, 80, 0.15);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .flag-button:hover {
+            transform: translateY(-5px);
+            border-color: #1DD1A1;
+            box-shadow: 0 15px 35px rgba(29, 209, 161, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
+        }
+
+        .flag-emoji {
+            font-size: 5.5rem;
+            margin-bottom: 0;
+        }
+
+        .flag-text {
+            font-size: 1.3rem;
+            color: #2C3E50;
+            font-weight: 600;
+        }
+
+        .flag-subtext {
+            font-size: 1rem;
+            color: #6c757d;
+            font-weight: 400;
+        }
+
+        /* ===== SPRACHAUSWAHL BUTTON ===== */
+        .language-selector {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .current-language-btn {
+            background: linear-gradient(135deg, #1DD1A1 0%, #17a085 100%);
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(29, 209, 161, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .current-language-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(29, 209, 161, 0.6);
+            background: linear-gradient(135deg, #17a085 0%, #1DD1A1 100%);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .current-language-btn .flag-small {
+            font-size: 1.4rem;
+        }
+
+        .current-language-btn .text {
+            font-weight: 700;
+        }
+
+        .current-language-btn i {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                position: relative;
+                padding-top: 70px;
+            }
+
+            .language-selector {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                margin-left: 0;
+                z-index: 10;
+            }
+
+            .davi-logo {
+                height: 60px;
+            }
+
+            .header-text h1 {
+                font-size: 2rem;
+            }
+
+            .header-text p {
+                font-size: 1.1rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .problem-card {
+                padding: 25px 20px;
+            }
+
+            .search-input {
+                padding: 16px 45px 16px 45px;
+                font-size: 1rem;
+            }
+
+            .confirm-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .yes-btn, .no-btn {
+                width: 200px;
+            }
+
+            .callback-btn {
+                margin-left: 0;
+                margin-top: 15px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-text h1 {
+                font-size: 1.7rem;
+            }
+
+            .problem-card {
+                padding: 20px 15px;
+            }
+
+            .solution-card {
+                padding: 25px 20px;
+            }
+
+            .problem-icon i {
+                font-size: 2.5rem;
+            }
+
+            .language-flags {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .flag-emoji {
+                font-size: 4rem;
+            }
+
+            .current-language-btn {
+                padding: 12px 18px;
+                font-size: 1rem;
+                min-width: 120px;
+            }
+
+            .current-language-btn .flag-small {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header mit DAVI Logo -->
+        <header class="header">
+            <div class="logo-container">
+                <img class="davi-logo" src="https://page.gensparksite.com/v1/base64_upload/49b12126a4ab0797a7445854507823e4" alt="DAVI Logo by DeepUp">
+            </div>
+            <div class="header-text">
+                <h1>Hey! Ich bin DAVI 👋</h1>
+                <p>Dein DeepUp Support rund um die Uhr. Suche nach deinem Problem oder klicke es unten an</p>
+            </div>
+            <div class="language-selector">
+                <button class="current-language-btn" onclick="showLanguageSelection()" style="display: none;" id="languageBtn" title="Sprache ändern / Change language / Изменить язык / Dili değiştir">
+                    <span class="flag-small" id="currentFlag">🇩🇪</span>
+                    <span class="text" id="currentLangText">Deutsch</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Suchbereich -->
+        <div class="search-section">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Suche..." class="search-input">
+                <button id="clearSearch" class="clear-btn" style="display: none;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hauptbereich -->
+        <main class="main-content">
+            <!-- Sprachauswahl View -->
+            <div id="languageView" class="view active">
+                <div class="language-selection">
+                    <div class="language-flags">
+                        <button class="flag-button" onclick="selectLanguage('de')">
+                            <div class="flag-emoji">🇩🇪</div>
+                            <div class="flag-text">Deutsch</div>
+                            <div class="flag-subtext">German</div>
+                        </button>
+                        <button class="flag-button" onclick="selectLanguage('en')">
+                            <div class="flag-emoji">🇬🇧</div>
+                            <div class="flag-text">English</div>
+                            <div class="flag-subtext">Englisch</div>
+                        </button>
+                        <button class="flag-button" onclick="selectLanguage('ru')">
+                            <div class="flag-emoji">🇷🇺</div>
+                            <div class="flag-text">Русский</div>
+                            <div class="flag-subtext">Russian</div>
+                        </button>
+                        <button class="flag-button" onclick="selectLanguage('tr')">
+                            <div class="flag-emoji">🇹🇷</div>
+                            <div class="flag-text">Türkçe</div>
+                            <div class="flag-subtext">Turkish</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Willkommen View -->
+            <div id="welcomeView" class="view">
+                <div class="problem-grid">
+                    <!-- Problems will be dynamically generated -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🏗️ DAVI ist 24/7 für dich da - auch am Wochenende!</p>
+            <p>Du kannst einen Rückruf anfordern, wir rufen dich Montag - Freitag von 7-17 Uhr zurück. Am Samstag kann dich der Bereitschaftsdienst von 8-14 Uhr zurückrufen, wenn das Problem nicht bis Montag warten kann.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="showImprint(); return false;">Impressum</a>
+                <a href="#" class="footer-link" onclick="showPrivacy(); return false;">Datenschutz</a>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Impressum Modal -->
+    <div id="imprintModal" class="legal-modal">
+        <div class="legal-content">
+            <button class="legal-close" onclick="closeImprint()">&times;</button>
+            <h2>Impressum</h2>
+            <p><strong>Angaben gemäß § 5 DDG (Digital Services Act)</strong></p>
+            
+            <h3>DeepUp GmbH</h3>
+            <p>
+                Portlandweg 1<br>
+                53227 Bonn<br>
+                Deutschland
+            </p>
+            
+            <h3>Handelsregister</h3>
+            <p>
+                Registernummer: HRB 24724<br>
+                Registergericht: Amtsgericht Bonn
+            </p>
+            
+            <h3>Vertreten durch</h3>
+            <p>Claudius Weinberger</p>
+            
+            <h3>Kontakt</h3>
+            <p>
+                E-Mail: <a href="mailto:meet@deepup.de">meet@deepup.de</a>
+            </p>
+            
+            <h3>Umsatzsteuer-ID</h3>
+            <p>
+                Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>
+                DE328743241
+            </p>
+            
+            <h3>EU-Streitschlichtung</h3>
+            <p>
+                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br>
+                <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a><br>
+                Unsere E-Mail-Adresse finden Sie oben im Impressum.
+            </p>
+            
+            <h3>Verbraucher­streit­beilegung/Universal­schlichtungs­stelle</h3>
+            <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        </div>
+    </div>
+    
+    <!-- Datenschutz Modal -->
+    <div id="privacyModal" class="legal-modal">
+        <div class="legal-content">
+            <button class="legal-close" onclick="closePrivacy()">&times;</button>
+            <h2>Datenschutzerklärung</h2>
+            <p><em>Stand: Januar 2025</em></p>
+            
+            <h3>1. Datenschutz auf einen Blick</h3>
+            
+            <h4>Allgemeines</h4>
+            <p>Diese Hinweise erklären, was mit deinen Daten passiert, wenn du diese Website nutzt.</p>
+            <p>Personenbezogene Daten sind alle Informationen, mit denen du als Person identifiziert werden kannst.</p>
+            
+            <h4>Wie erfassen wir Daten?</h4>
+            <p><strong>Daten, die du eingibst:</strong><br>
+            z.B. Name, Telefonnummer und Problembeschreibung im Rückruf-Formular.</p>
+            
+            <p><strong>Automatische Daten:</strong><br>
+            z.B. Browsertyp, Gerätetyp, Spracheinstellung, Klicks im Bot.<br>
+            Diese Daten dienen dazu, die Website zu verbessern.</p>
+            
+            <h3>2. Hosting</h3>
+            <p>Die Website wird von <strong>GitHub Pages</strong> bereitgestellt.</p>
+            <p><strong>Anbieter:</strong><br>
+            GitHub Inc., 88 Colin P Kelly Jr. Street, San Francisco, CA 94107, USA</p>
+            
+            <p><strong>GitHub verarbeitet:</strong></p>
+            <ul>
+                <li>IP-Adresse (anonymisiert/logbedingt)</li>
+                <li>technische Daten (Browser, Geräteinformationen)</li>
+            </ul>
+            
+            <p><strong>GitHub-Privacy-Statement:</strong><br>
+            <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement</a></p>
+            
+            <h3>3. Verantwortliche Stelle</h3>
+            <p>
+                <strong>DeepUp GmbH</strong><br>
+                Portlandweg 1<br>
+                53227 Bonn<br>
+                Telefon: +49 170 4874736<br>
+                E-Mail: <a href="mailto:meet@deepup.de">meet@deepup.de</a>
+            </p>
+            
+            <h3>4. Rückruf-Formular</h3>
+            <p>Wenn du das Rückruf-Formular verwendest, speichern wir folgende Daten:</p>
+            <ul>
+                <li>Name</li>
+                <li>Telefonnummer</li>
+                <li>Problembeschreibung</li>
+                <li>ggf. Seriennummer (falls angegeben)</li>
+                <li>Gewählte Dringlichkeit („Jetzt" oder „Montag reicht")</li>
+                <li>Zeitpunkt der Anfrage</li>
+            </ul>
+            
+            <p><strong>Wofür nutzen wir diese Daten?</strong><br>
+            Nur für:</p>
+            <ul>
+                <li>Rückrufe</li>
+                <li>Support</li>
+                <li>Nachvollziehen der Anfrage</li>
+            </ul>
+            
+            <p><strong>Rechtsgrundlage:</strong><br>
+            Art. 6 Abs. 1 lit. b DSGVO (Vertrag/Support).</p>
+            
+            <p><strong>Wie werden die Daten übertragen?</strong><br>
+            Über <strong>Web3Forms</strong>, einen sicheren europäischen Formulardienst.</p>
+            <p>Privacy: <a href="https://web3forms.com/privacy" target="_blank">https://web3forms.com/privacy</a></p>
+            
+            <p>Die Daten werden verschlüsselt übertragen und direkt per E-Mail an DeepUp gesendet.</p>
+            
+            <p><strong>Keine Weitergabe an Dritte.</strong><br>
+            <strong>Keine Nutzung für Marketing.</strong></p>
+            
+            <p><strong>Löschung:</strong><br>
+            Spätestens 30 Tage nach Bearbeitung.</p>
+            
+            <h3>5. Analyse (Google Analytics 4 – datenschutzfreundlich)</h3>
+            <p>Diese Website nutzt <strong>Google Analytics 4</strong> ausschließlich zur Verbesserung der Bedienung und zur Fehleranalyse im Bot.</p>
+            
+            <p><strong>Was wird erfasst?</strong></p>
+            <ul>
+                <li>Welche Probleme werden angeklickt?</li>
+                <li>Welche Lösungen werden angezeigt?</li>
+                <li>Welche Sprache wird verwendet?</li>
+                <li>Wird das Problem gelöst („Ja, hat geklappt")?</li>
+                <li>Wurde ein Rückruf angefragt?</li>
+                <li>Bot-Abbrüche (z.B. Seite verlassen ohne Lösung)</li>
+            </ul>
+            
+            <p><strong>Es werden keine personenbezogenen Daten erfasst.</strong><br>
+            Insbesondere:</p>
+            <ul>
+                <li>❌ kein Name</li>
+                <li>❌ keine Telefonnummer</li>
+                <li>❌ keine Seriennummer</li>
+                <li>❌ keine Eingaben aus dem Formular</li>
+            </ul>
+            
+            <h4>IP-Anonymisierung</h4>
+            <p><strong>Aktiv.</strong><br>
+            Die IP-Adresse wird sofort anonymisiert, bevor sie in die USA übertragen wird.</p>
+            
+            <h4>Keine Cookies</h4>
+            <p>Die Implementierung nutzt <strong>keine Werbe- oder Tracking-Cookies</strong>.<br>
+            Es wird nur ein anonymes Event-Tracking genutzt.</p>
+            
+            <h4>Rechtsgrundlage</h4>
+            <p>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Fehleranalyse & Verbesserung).</p>
+            
+            <p><strong>Google-Datenschutz:</strong><br>
+            <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+            
+            <h3>6. Deine Rechte</h3>
+            <p>Du hast jederzeit das Recht:</p>
+            <ul>
+                <li>Auskunft über gespeicherte Daten</li>
+                <li>Berichtigung falscher Daten</li>
+                <li>Löschung („Recht auf Vergessenwerden")</li>
+                <li>Einschränkung der Verarbeitung</li>
+                <li>Widerspruch gegen die Verarbeitung</li>
+                <li>Datenübertragbarkeit</li>
+            </ul>
+            <p>Schreib uns dazu an: <a href="mailto:meet@deepup.de">meet@deepup.de</a></p>
+            
+            <h3>7. Kontakt für Datenschutz</h3>
+            <p>
+                <strong>DeepUp GmbH</strong><br>
+                E-Mail: <a href="mailto:meet@deepup.de">meet@deepup.de</a><br>
+                Telefon: +49 170 4874736
+            </p>
+        </div>
+    </div>
+
+    <!-- Analytics laden (WICHTIG: VOR main.js!) -->
+    <script src="js/analytics-googlesheets.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
